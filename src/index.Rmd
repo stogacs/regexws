@@ -1,0 +1,156 @@
+---
+title: Regular Expressions
+output:
+  revealjs::revealjs_presentation:
+    center: false
+    css:
+      - styles.css
+    fig_caption: true
+    highlight: haddock
+    pandoc_args: [ "--filter", "pandoc-include-code" ]
+    reveal_options:
+      controlsTutorial: false
+      previewLinks: true
+      slideNumber: true
+    theme: serif
+    transition: fade
+---
+
+```{bash, include = FALSE}
+sassc styles.scss styles.css
+```
+
+# A Task
+
+We have these lines:
+
+```
+Cover.jpg
+01 City Ruins.flac
+02 Amusement Park.flac
+03 A Beautiful Song.flac
+04 Alien Manifestation.flac
+05 The Tower.flac
+06 Dependent Weakling.flac
+07 Bipolar Nightmare.flac
+08 Mourning.flac
+09 The Sound of the End.flac
+10 Weight of the World.flac
+```
+
+We want this:
+
+```
+cover.jpg
+city-ruins.flac
+amusement-park.flac
+a-beautiful-song.flac
+alien-manifestation.flac
+the-tower.flac
+dependent-weakling.flac
+bipolar-nightmare.flac
+mourning.flac
+the-sound-of-the-end.flac
+weight-of-the-world.flac
+```
+
+How do we accomplish this?
+
+## Our Options
+
+1.  Edit each line and word by hand
+2.  Use regular expressions
+
+# Very Brief Basics
+
+A **regular expression** is a sequence of characters that represents a search pattern
+
+-  Pattern matches certain text sequences
+-  Used for searching and replacing text
+-  Also called regex or regexp
+
+Let's use [regexr.com](https://regexr.com/) to try these out.
+
+## Search Characters
+
+Sequences of letters are a search pattern for those letters. By default they're
+case-sensitive.
+
+Use `[]` to denote sets of things.
+
+Use `.` to denote any character.
+
+<hr />
+
+`th` searches for `th`:
+
+<pre><code>The quick brown fox jumps over <mark>th</mark>e lazy dog.</code></pre>
+
+`o[vwx]` searches for `ov`, `ow`, and `ox`:
+
+<pre><code>The quick br<mark>ow</mark> f<mark>ox</mark> jumps <mark>ov</mark>er the lazy dog.</code></pre>
+
+`o.` matches `o` and then any character, including whitespace:
+
+<pre><code>The quick br<mark>ow</mark> f<mark>ox</mark> jumps <mark>ov</mark>er the lazy d<mark>og</mark>.</code></pre>
+
+## Ranges
+
+`o[a-z]` matches o and then a character `a`, `b`, `c`, ... `z`:
+
+<pre><code>b<mark>oa</mark> l<mark>ob</mark>by l<mark>oc</mark>ati<mark>on</mark> <mark>of</mark> OJ <mark>op</mark>ening s<mark>oy</mark><mark>oz</mark> o0 o1 o2 o5 o9 oH</code></pre>
+
+`o[1-8]` matches o and then a digit from `1` to `8`:
+
+<pre><code>boa lobby location of OJ opening soyoz o0 <mark>o1</mark> <mark>o2</mark> <mark>o5</mark> o9 oH</code></pre>
+
+## Multipliers
+
+Multipliers act on the item to the left.
+
+`*` matches an item zero or more times.
+
+`+` matches an item one or more times.
+
+`?` matches an item zero or one times.
+
+<hr />
+
+`lo*` matches `l` and then zero or more `o`:
+
+<pre><code>Are you <mark>loo</mark>king at the <mark>lo</mark>ck or the si<mark>l</mark>k?</code></pre>
+
+`lo+` matches `l` then one or more `o`:
+
+<pre><code>Are you <mark>loo</mark>king at the <mark>lo</mark>ck or the silk?</code></pre>
+
+`lo?` matches `l` and then an `o` or nothing:
+
+<pre><code>Are you <mark>lo</mark>oking at the <mark>lo</mark>ck or the si<mark>l</mark>k?</code></pre>
+
+## Escaping Metacharacters
+
+Typically, the <code>\\</code> is used to escape metacharacters like `.`, `*` or `]`.
+
+<code>\\\\</code> escapes a <code>\\</code>.
+
+See the difference between `n.` and `n\.` below:
+
+`n.` matches `n` and then any character:
+
+<pre><code>A<mark>n </mark>expressio<mark>n.</mark></code></pre>
+
+`n\.` matches `n` and then a period (`.`):
+
+<pre><code>An expressio<mark>n.</mark></code></pre>
+
+# Solving Our Task
+
+1.  Use regular expressions to match certain text
+2.  Replace the matched text
+
+## Search and Replace with Regular Expressions
+
+Most decent text editors and IDEs offer search and replace based on regular expressions
+
+
