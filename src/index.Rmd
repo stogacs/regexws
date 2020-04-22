@@ -118,15 +118,21 @@ Multipliers act on the item to the left.
 
 `lo*` matches `l` and then zero or more `o`:
 
-<pre><code>Are you <mark>loo</mark>king at the <mark>lo</mark>ck or the si<mark>l</mark>k?</code></pre>
+<pre><code><span>
+  Are you <mark>loo</mark>king at the <mark>lo</mark>ck or the si<mark>l</mark>k?
+</span></code></pre>
 
 `lo+` matches `l` then one or more `o`:
 
-<pre><code>Are you <mark>loo</mark>king at the <mark>lo</mark>ck or the silk?</code></pre>
+<pre><code><span>
+  Are you <mark>loo</mark>king at the <mark>lo</mark>ck or the silk?
+</span></code></pre>
 
 `lo?` matches `l` and then an `o` or nothing:
 
-<pre><code>Are you <mark>lo</mark>oking at the <mark>lo</mark>ck or the si<mark>l</mark>k?</code></pre>
+<pre><code><span>
+  Are you <mark>lo</mark>oking at the <mark>lo</mark>ck or the si<mark>l</mark>k?
+</span></code></pre>
 
 ## Escaping Metacharacters
 
@@ -138,19 +144,65 @@ See the difference between `n.` and `n\.` below:
 
 `n.` matches `n` and then any character:
 
-<pre><code>A<mark>n </mark>expressio<mark>n.</mark></code></pre>
+<pre><code><span>
+  A<mark>n </mark>expressio<mark>n.</mark>
+</span></code></pre>
 
 `n\.` matches `n` and then a period (`.`):
 
-<pre><code>An expressio<mark>n.</mark></code></pre>
+<pre><code><span>
+  An expressio<mark>n.</mark>
+</span></code></pre>
+
+# Search and Replace with Regular Expressions
+
+Most decent text editors and IDEs offer search and replace based on regular
+expressions.
+
+Use `()` to "capture" text and use in the replacement with `$1`, `$2`, etc.
+
+<hr />
+
+`L(.*?)(\s.)` "captures" the highlighted text:
+
+<pre><code><span>
+  L<mark>ook</mark><mark style="background-color:lightblue;"> o</mark>ver there!
+</span></code></pre>
+
+We tell our editor/command to replace the captured text with something such as
+`ABC$1123$2$2` and get:
+
+<pre><code><span>
+  ABCook123 o oover there!
+</span></code></pre>
 
 # Solving Our Task
 
 1.  Use regular expressions to match certain text
 2.  Replace the matched text
 
-## Search and Replace with Regular Expressions
+We'll write search/replacement regular expression as `s/<search>/<replacement>/`
 
-Most decent text editors and IDEs offer search and replace based on regular expressions
+<hr />
 
+A couple of regular expressions and replacement expressions:
+
+1.  Remove the beginning numbers: `s/^\d{2}\s//`
+2.  Replace spaces with dashes: `s/\s/-/`
+3.  Lowercase everything: this isn't necessarily possible with regex, depending on the implementation
+
+# Other Useful Examples
+
+Regular expressions are immediately useful in many situations:
+
+-   Bulk renaming files
+-   Renaming variables, functions, other symbols
+-   Searching logs or large files in general
+-   Validating string data
+-   Web scraping
+
+Integral to many systems:
+
+-   Syntax highlighters
+-   Compiler lexers
 
