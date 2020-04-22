@@ -7,7 +7,6 @@ output:
       - styles.css
     fig_caption: true
     highlight: haddock
-    pandoc_args: [ "--filter", "pandoc-include-code" ]
     reveal_options:
       controlsTutorial: false
       previewLinks: true
