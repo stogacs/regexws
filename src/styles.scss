@@ -41,6 +41,10 @@ $mainfont-size: 0.7em;
       line-height: 120%;
     }
 
+    pre code {
+      font-size: 0.8 * $mainfont-size;
+    }
+
     ul {
       list-style-type: circle;
     }
