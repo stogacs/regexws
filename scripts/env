@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 SCRIPT_DIR="$(dirname "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")")"
 ROOT_DIR="$(realpath "$SCRIPT_DIR/..")"
 export SCRIPT_DIR
