@@ -5,7 +5,7 @@ SCRIPT_DIR="$(dirname "$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename 
 source "$SCRIPT_DIR/env"
 
 # Check if required commands exist
-declare -a REQ_CMDS=("Rscript" "pandoc" "pandoc-include-code" "xelatex")
+declare -a REQ_CMDS=("Rscript" "pandoc")
 for c in "${REQ_CMDS[@]}"; do
   "$SCRIPT_CHECKCMD" "$c" || exit
 done
