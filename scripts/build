@@ -23,18 +23,9 @@ if [ ! -d "$DIST_DIR" ]; then
   mkdir "$DIST_DIR" -p
 fi
 
-if [ ! -d "$CACHE_DIR" ]; then
-  mkdir "$CACHE_DIR" -p
-fi
-
 # Copy src dir
 cp -r "$SRC_DIR" "$TARGET_DIR/"
-
-# Copy cache dir
-cp -r "$CACHE_DIR" "$TMP_DIR/index_cache"
 
 # Run R render script
 cd "$TARGET_DIR" || exit
 Rscript "$SCRIPT_RENDER"
-
-cp -r "$TMP_DIR"/index_cache/* "$CACHE_DIR/"
