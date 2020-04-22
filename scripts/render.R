@@ -1,6 +1,7 @@
 #!/usr/bin/env Rscript
 initial_options <- commandArgs(trailingOnly = FALSE)
-scriptdir <- dirname(sub("--file=", "", initial_options[grep("--file=", initial_options)]))
+scriptdir <- dirname(sub("--file=", "",
+                         initial_options[grep("--file=", initial_options)]))
 
 setwd(file.path(scriptdir, ".."))
 source(".Rprofile")
