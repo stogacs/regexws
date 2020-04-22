@@ -37,7 +37,6 @@ $mainfont-size: 0.7em;
 
     code {
       font-family: $font-code;
-      font-size: 1 * $mainfont-size;
       line-height: 120%;
     }
 
@@ -49,25 +48,9 @@ $mainfont-size: 0.7em;
       list-style-type: circle;
     }
 
-    img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
-    }
-
-    figcaption {
-      font-size: 0.5em;
-      text-align: center;
-    }
-
     .sourceCode {
       margin-top: 0.5em;
       margin-bottom: 0.5em;
     }
   }
-}
-
-.noscroll pre code {
-  max-height: initial;
 }
