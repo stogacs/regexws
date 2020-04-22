@@ -22,6 +22,11 @@ jobs:
       - name: Install pandoc
         uses: r-lib/actions/setup-pandoc@v1
 
+      - name: Install renv
+        shell: Rscript {0}
+        run: |
+          install.packages("renv")
+
       - name: Restore renv cache
         uses: actions/cache@v1
         with:
@@ -30,10 +35,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-renv-
 
-      - name: Restore packages
+      - name: Install R packages
         shell: Rscript {0}
         run: |
-          if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv")
           renv::restore()
 
       - name: Checkout
